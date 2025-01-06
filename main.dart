@@ -24,6 +24,7 @@ class _flutterApp extends State<FlutterApp> {
   var itController = TextEditingController();
 
   var result =  "";
+  var bg_color = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _flutterApp extends State<FlutterApp> {
           child: Container(
             width: 400,
             height: 450 ,
-            color: Colors.purple.shade50,
+            color: bg_color,
             child: Column(
 
               mainAxisAlignment: MainAxisAlignment.center,
@@ -93,8 +94,24 @@ class _flutterApp extends State<FlutterApp> {
 
                     var bmi = weight/ (heightInMetres* heightInMetres);
 
+                    var message = "";
+
+                    if (bmi <18 && bmi >0){
+                      message = "You are Under-Weight";
+                      bg_color = Colors.purple.shade50;
+
+                    }else if(bmi>18 && bmi <25){
+                      message = "You are Fit";
+                      bg_color = Colors.green.shade50;
+                    }else if (bmi >25){
+                      message = "You are Over-Weight";
+                      bg_color = Colors.red.shade50;
+                    }else {
+                      bg_color = Colors.white;
+                    }
+
                    setState(() {
-                     result = "Your BMI is : ${bmi.toStringAsFixed(3)}";
+                     result = " $message \n Your BMI is : ${bmi.toStringAsFixed(3)}";
                    });
 
                   }else {
